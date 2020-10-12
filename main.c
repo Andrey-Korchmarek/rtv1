@@ -24,10 +24,32 @@ double	scalar_product(t_vector a, t_vector b)
 	return (x + y + z);
 }
 
-void	change_pixel(t_rtv *data, int *pix)
+double	scalar_square(t_vector v)
 {
-//	double
-	return ;
+	return (scalar_product(v, v));
+}
+
+void	change_pixel(t_rtv *data, int *pix, t_coord point)
+{
+	double a;
+	double b;
+	double c;
+	double discr;
+	double r;
+
+	a = scalar_square((t_vector){data->o, point});
+	b = 2 * scalar_product((t_vector){data->ball.center, data->o}, (t_vector){data->o, point});
+	r = data->ball.radius;
+	c = scalar_square((t_vector){data->ball.center, data->o}) - r * r;
+	if ((discr = pow(b, 2) - 4 * a * c) < 0)
+		return ;
+	else if (discr == 0)
+	{
+		*pix = -(b / (2 * a));
+		return ;
+	}
+	else
+		*pix = MIN((-b + sqrt(discr)) / (2 * a), (-b - sqrt(discr)) / (2 * a));
 }
 
 int	**get_window(t_rtv *data)
@@ -45,6 +67,7 @@ int	**get_window(t_rtv *data)
 		while (j < WIN_H)
 		{
 			scene[i][j] = 0xFFFFFF;
+			change_pixel(data, &scene[i][j], win_to_point(i, j, data->d));
 			j++;
 		}
 		i++;
@@ -54,8 +77,10 @@ int	**get_window(t_rtv *data)
 
 void	set_default(t_rtv *data)
 {
-//	data->o = (t_)
-	data = NULL;
+	data->o = (t_coord){0, 0 , 0};
+	data->d = 20;
+	data->ball.center = (t_coord){0, 0 , 40};
+	data->ball.radius = 5;
 	return ;
 }
 
