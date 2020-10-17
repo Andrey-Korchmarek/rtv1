@@ -1,6 +1,6 @@
 #include "includes/rtv1.h"
 
-t_coord	win_to_point(int i, int j, int d)
+t_coord	wtp(int i, int j, int d)
 {
 	double x;
 	double y;
@@ -29,7 +29,7 @@ double	scalar_square(t_vector v)
 	return (scalar_product(v, v));
 }
 
-void	change_pixel(t_rtv *data, int *pix, t_coord point)
+void	change_pixel(t_rtv *data, int *pix, t_vector d, t_vector oc)
 {
 	double a;
 	double b;
@@ -37,19 +37,23 @@ void	change_pixel(t_rtv *data, int *pix, t_coord point)
 	double discr;
 	double r;
 
-	a = scalar_square((t_vector){data->o, point});
-	b = 2 * scalar_product((t_vector){data->ball.center, data->o}, (t_vector){data->o, point});
+	a = scalar_square((t_vector){data->o, data->d});
+	b = 2 * scalar_product((t_vector){data->o, data->ball.center},
+		(t_vector){data->o, data->d});
 	r = data->ball.radius;
-	c = scalar_square((t_vector){data->ball.center, data->o}) - r * r;
-	if ((discr = pow(b, 2) - 4 * a * c) < 0)
+	c = scalar_square((t_vector){data->o, data->ball.center}) - r * r;
+	discr = pow(b, 2) - 4 * a * c;
+//	printf("%.1f ", discr);
+	if ((int)discr < 0)
 		return ;
-	else if (discr == 0)
+	else if ((int)discr == 0)
 	{
-		*pix = -(b / (2 * a));
+		*pix = (int)(-(b / (2 * a)));
 		return ;
 	}
 	else
-		*pix = MIN((-b + sqrt(discr)) / (2 * a), (-b - sqrt(discr)) / (2 * a));
+		*pix = (int)(MIN((-b + sqrt(discr)) / (2 * a), (-b - sqrt(discr)) /
+		(2 * a)));
 }
 
 int	**get_window(t_rtv *data)
@@ -57,6 +61,8 @@ int	**get_window(t_rtv *data)
 	int **scene;
 	int i;
 	int j;
+	t_vector tmp1;
+	t_vector tmp2;
 
 	scene = (int**) malloc(sizeof(int) * WIN_SIZE);
 	i = 0;
@@ -66,8 +72,10 @@ int	**get_window(t_rtv *data)
 		j = 0;
 		while (j < WIN_H)
 		{
-			scene[i][j] = 0xFFFFFF;
-			change_pixel(data, &scene[i][j], win_to_point(i, j, data->d));
+			scene[i][j] = 0xffffff;
+			tmp1 = (t_vector){wtp(i, j, 0), wtp(i, j, 1)};
+			tmp2 = (t_vector){data->ball.center, wtp(i, j, 0)};
+			change_pixel(data, &scene[i][j], tmp1, tmp2);
 			j++;
 		}
 		i++;
@@ -75,12 +83,30 @@ int	**get_window(t_rtv *data)
 	return (scene);
 }
 
+void	ft_test_print(int **scene)
+{
+	int i = 0;
+	int j;
+	while (i < WIN_W)
+	{
+		scene[i] = (int*)malloc(sizeof(int) * WIN_H);
+		j = 0;
+		while (j < WIN_H)
+		{
+			printf("%3d", scene[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+}
+
 void	set_default(t_rtv *data)
 {
 	data->o = (t_coord){0, 0 , 0};
-	data->d = 20;
-	data->ball.center = (t_coord){0, 0 , 40};
-	data->ball.radius = 5;
+	data->d = (t_coord){0, 0 , 0};
+	data->ball.center = (t_coord){0, 0 , 10};
+	data->ball.radius = 3;
 	return ;
 }
 
@@ -92,5 +118,12 @@ int	main(void)
 	data = (t_rtv*)malloc(sizeof(t_rtv));
 	set_default(data);
 	scene = get_window(data);
+	ft_test_print(scene);
+
+//	int pix = 0xffffff;
+//	printf("%d\n", pix);
+//	change_pixel(data, &pix, (t_coord){ 0, 0, 1});
+//	printf("%d\n", pix);
+
 	return (0);
 }

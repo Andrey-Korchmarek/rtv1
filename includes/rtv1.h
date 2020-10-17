@@ -8,8 +8,8 @@
 # include <stdlib.h>
 #include <math.h>
 #define MIN(a,b) ((a) < (b) ? (a) : (b))
-#define WIN_H (300)
-#define WIN_W (400)
+#define WIN_H (30)
+#define WIN_W (40)
 #define WIN_SIZE (WIN_H * WIN_W)
 
 typedef struct		s_coord
@@ -34,7 +34,7 @@ typedef	struct	s_sphere
 typedef	struct	s_rtv
 {
 	t_coord		o;
-	double		d;
+	t_coord		d;
 	t_sphere	ball;
 }				t_rtv;
 
