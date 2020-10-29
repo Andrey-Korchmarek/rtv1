@@ -24,6 +24,20 @@
 
 # define SHRINKER ( 1.247 )
 
+typedef struct	s_dot3
+{
+	double	x;
+	double	y;
+	double	z;
+}				t_dot3;
+
+typedef struct	s_way
+{
+	double	dx;
+	double	dy;
+	double	dz;
+}				t_way;
+
 size_t	ft_shrinking_gap(size_t gap);
 
 #endif

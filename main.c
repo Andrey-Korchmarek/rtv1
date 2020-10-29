@@ -72,7 +72,7 @@ int	**get_window(t_rtv *data)
 		j = 0;
 		while (j < WIN_H)
 		{
-			scene[i][j] = 0xffffff;
+			scene[i][j] = 0xFFFFFF;
 			tmp1 = (t_vector){wtp(i, j, 0), wtp(i, j, 1)};
 			tmp2 = (t_vector){data->ball.center, wtp(i, j, 0)};
 			change_pixel(data, &scene[i][j], tmp1, tmp2);
@@ -89,11 +89,10 @@ void	ft_test_print(int **scene)
 	int j;
 	while (i < WIN_W)
 	{
-		scene[i] = (int*)malloc(sizeof(int) * WIN_H);
 		j = 0;
 		while (j < WIN_H)
 		{
-			printf("%3d", scene[i][j]);
+			printf("%3d ", scene[i][j]);
 			j++;
 		}
 		printf("\n");
@@ -119,11 +118,5 @@ int	main(void)
 	set_default(data);
 	scene = get_window(data);
 	ft_test_print(scene);
-
-//	int pix = 0xffffff;
-//	printf("%d\n", pix);
-//	change_pixel(data, &pix, (t_coord){ 0, 0, 1});
-//	printf("%d\n", pix);
-
 	return (0);
 }
