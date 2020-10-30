@@ -19,6 +19,7 @@
 # include <string.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include <math.h>
 
 # include "libft.h"
 
