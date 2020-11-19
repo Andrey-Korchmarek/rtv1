@@ -40,5 +40,6 @@ typedef struct	s_way
 }				t_way;
 
 size_t	ft_shrinking_gap(size_t gap);
+double	ft_discriminant(double a, double b, double c);
 
 #endif
