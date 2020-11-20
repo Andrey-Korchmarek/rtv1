@@ -54,6 +54,30 @@ void	change_pixel(t_rtv *data, int *pix, t_vector d, t_vector oc)
 	else
 		*pix = (int)(MIN((-b + sqrt(discr)) / (2 * a), (-b - sqrt(discr)) /
 		(2 * a)));
+	// Вместо мин(корни) использовать мин(нормали векторов из глаза в точки
+	// корней)
+}
+
+void	change_pixel2(t_rtv *data, int *pix)
+{
+	double a;
+	double b;
+	double c;
+	double discr;
+
+
+	a = 1;
+	b = 0;
+	c = 1;
+	discr = b * b - 4 * a * c;
+	if (discr < 0)
+		return ;
+	else if ((int)discr == 0)
+	{
+		return ;
+	}
+	else
+		return ;
 }
 
 int	**get_window(t_rtv *data)
@@ -73,9 +97,10 @@ int	**get_window(t_rtv *data)
 		while (j < WIN_H)
 		{
 			scene[i][j] = 0xFFFFFF;
-			tmp1 = (t_vector){wtp(i, j, 0), wtp(i, j, 1)};
-			tmp2 = (t_vector){data->ball.center, wtp(i, j, 0)};
-			change_pixel(data, &scene[i][j], tmp1, tmp2);
+//			tmp1 = (t_vector){wtp(i, j, 0), wtp(i, j, 1)};
+//			tmp2 = (t_vector){data->ball.center, wtp(i, j, 0)};
+//			change_pixel(data, &scene[i][j], tmp1, tmp2);
+			change_pixel2(data, &scene[i][j]);
 			j++;
 		}
 		i++;
