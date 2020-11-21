@@ -58,24 +58,12 @@ void	change_pixel(t_rtv *data, int *pix, t_vector d, t_vector oc)
 
 void	change_pixel2(t_rtv *data, int *pix)
 {
+	t_equation2 roots;
 	double a;
 	double b;
 	double c;
-	double discr;
 
-
-	a = 1;
-	b = 0;
-	c = 1;
-	discr = b * b - 4 * a * c;
-	if (discr < 0)
-		return ;
-	else if ((int)discr == 0)
-	{
-		return ;
-	}
-	else
-		return ;
+	a = ft_scpway();
 }
 
 int	**get_window(t_rtv *data)

@@ -5,8 +5,9 @@
 #ifndef RTV1_H
 #define RTV1_H
 #include <stdio.h>
-# include <stdlib.h>
+#include <stdlib.h>
 #include <math.h>
+#include "libft/includes/libft.h"
 #define MIN(a,b) ((a) < (b) ? (a) : (b))
 #define WIN_H (30)
 #define WIN_W (40)

@@ -45,7 +45,17 @@ typedef struct	s_equation2
 	double	*roots;
 }				t_equation2;
 
-size_t	ft_shrinking_gap(size_t gap);
-double	ft_discriminant(double a, double b, double c);
+size_t			ft_shrinking_gap(size_t gap);
+t_dot3			ft_newdot3(double x, double y, double z);
+void			ft_change_dot(t_dot3 *point, double x, double y, double z);
+t_dot3			ft_movdot3(t_dot3 point, t_way vector);
+double			ft_lenline3(t_dot3 a, t_dot3 b);
+t_way			ft_newway3(double dx, double dy, double dz);
+t_way			ft_mulway(t_way vector, double scalar);
+double			ft_waylenght(t_way vec);
+t_way			ft_wayfromdots(t_dot3 beg, t_dot3 end);
+t_way			ft_vecpway(t_way a, t_way b);
+t_way			ft_sumway(t_way v1, t_way v2);
+double			ft_scpway(t_way v1, t_way v2);
 
 #endif
