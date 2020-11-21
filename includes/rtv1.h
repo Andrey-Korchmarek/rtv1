@@ -28,13 +28,13 @@ typedef	struct	s_vector
 
 typedef	struct	s_sphere
 {
-	t_coord	center;
+	t_dot3	center;
 	double	radius;
 }				t_sphere;
 
 typedef	struct	s_rtv
 {
-	t_coord		o;
+	t_dot3		o;
 	t_coord		d;
 	t_sphere	ball;
 }				t_rtv;

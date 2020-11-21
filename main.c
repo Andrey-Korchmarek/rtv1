@@ -24,10 +24,10 @@ double	scalar_product(t_vector a, t_vector b)
 	return (x + y + z);
 }
 
-double	scalar_square(t_vector v)
-{
-	return (scalar_product(v, v));
-}
+//double	scalar_square(t_vector v)
+//{
+//	return (scalar_product(v, v));
+//}
 
 void	change_pixel(t_rtv *data, int *pix, t_vector d, t_vector oc)
 {
@@ -56,14 +56,36 @@ void	change_pixel(t_rtv *data, int *pix, t_vector d, t_vector oc)
 		(2 * a)));
 }
 
-void	change_pixel2(t_rtv *data, int *pix)
+double	ft_scpway_square(t_way v)
 {
-	t_equation2 roots;
-	double a;
-	double b;
-	double c;
+	return (ft_scpway(v, v));
+}
 
-	a = ft_scpway();
+void	change_color(t_equation2 *roots, int *color)
+{
+
+}
+
+void	change_pixel2(t_rtv *data, t_dot3 pix, int *color)
+{
+	t_equation2	*roots;
+	double		a;
+	double		b;
+	double		c;
+
+	a = ft_scpway_square(ft_wayfromdots(data->o, pix));
+	b = 2 * ft_scpway(ft_wayfromdots(data->ball.center,data->o),
+				ft_wayfromdots(data->o, pix));
+	c = ft_scpway_square(ft_wayfromdots(data->ball.center,data->o)) -
+			pow(data->ball.radius, 2);
+	roots = ft_quadratic(a, b, c);
+	if (roots->number == 0)
+		return ;
+	else if ((roots->number == 1)
+		change_color(color);
+		*color = (int)floor(roots->roots[0]);
+	else
+		*color =
 }
 
 int	**get_window(t_rtv *data)
@@ -71,8 +93,6 @@ int	**get_window(t_rtv *data)
 	int **scene;
 	int i;
 	int j;
-	t_vector tmp1;
-	t_vector tmp2;
 
 	scene = (int**) malloc(sizeof(int) * WIN_SIZE);
 	i = 0;
@@ -86,7 +106,7 @@ int	**get_window(t_rtv *data)
 //			tmp1 = (t_vector){wtp(i, j, 0), wtp(i, j, 1)};
 //			tmp2 = (t_vector){data->ball.center, wtp(i, j, 0)};
 //			change_pixel(data, &scene[i][j], tmp1, tmp2);
-			change_pixel2(data, &scene[i][j]);
+			change_pixel2(data, ft_newdot3(1, 1, 1) &scene[i][j]);
 			j++;
 		}
 		i++;
@@ -113,7 +133,7 @@ void	ft_test_print(int **scene)
 
 void	set_default(t_rtv *data)
 {
-	data->o = (t_coord){0, 0 , 0};
+	data->o = ft_newdot3(0, 0, 0);
 	data->d = (t_coord){0, 0 , 0};
 	data->ball.center = (t_coord){0, 0 , 10};
 	data->ball.radius = 3;

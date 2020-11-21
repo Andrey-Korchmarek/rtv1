@@ -46,6 +46,7 @@ typedef struct	s_equation2
 }				t_equation2;
 
 size_t			ft_shrinking_gap(size_t gap);
+t_equation2		*ft_quadratic(double a, double b, double c);
 t_dot3			ft_newdot3(double x, double y, double z);
 void			ft_change_dot(t_dot3 *point, double x, double y, double z);
 t_dot3			ft_movdot3(t_dot3 point, t_way vector);

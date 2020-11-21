@@ -1,6 +1,14 @@
-//
-// Created by Mari Ashley on 11/19/20.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_quadratic.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mashley <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/21 19:25:15 by mashley           #+#    #+#             */
+/*   Updated: 2020/11/21 19:25:19 by mashley          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "includes/bonus.h"
 
@@ -25,8 +33,8 @@ t_equation2	*ft_quadratic(double a, double b, double c)
 	}
 	else
 	{
-		roots[0] = (-b + sqrt(discr))/ (2 * a);
-		roots[1] = (-b - sqrt(discr))/ (2 * a);
+		roots[0] = (-b + sqrt(discr)) / (2 * a);
+		roots[1] = (-b - sqrt(discr)) / (2 * a);
 		result->number = 2;
 		result->roots = roots;
 	}
