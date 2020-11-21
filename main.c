@@ -54,8 +54,6 @@ void	change_pixel(t_rtv *data, int *pix, t_vector d, t_vector oc)
 	else
 		*pix = (int)(MIN((-b + sqrt(discr)) / (2 * a), (-b - sqrt(discr)) /
 		(2 * a)));
-	// Вместо мин(корни) использовать мин(нормали векторов из глаза в точки
-	// корней)
 }
 
 void	change_pixel2(t_rtv *data, int *pix)

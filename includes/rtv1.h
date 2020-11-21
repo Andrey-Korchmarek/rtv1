@@ -12,12 +12,6 @@
 #define WIN_W (40)
 #define WIN_SIZE (WIN_H * WIN_W)
 
-typedef struct	s_equation
-{
-	int		number;
-	double	*roots;
-}				t_equation;
-
 typedef struct		s_coord
 {
 	double	x;

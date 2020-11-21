@@ -39,6 +39,12 @@ typedef struct	s_way
 	double	dz;
 }				t_way;
 
+typedef struct	s_equation2
+{
+	int		number;
+	double	*roots;
+}				t_equation2;
+
 size_t	ft_shrinking_gap(size_t gap);
 double	ft_discriminant(double a, double b, double c);
 
