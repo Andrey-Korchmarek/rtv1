@@ -10,19 +10,18 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME := libft.a
+NAME = libft.a
+SOURCES = ./
+INCLUDES = -L $(addprefix ./includes/, $(HEAD))
 CC = gcc -Wall -Wextra -Werror
 RM = /bin/rm -rf
 
-HEAD := libft.h get_next_line.h bonus.h tmp.h
-INCLUDES := -L $(addprefix ./includes/, $(HEAD))
-
 DIR_SRC := ./srcs/
 DIR_BUILD := ./build/
-SUBDIR := arr/ bonus/ chr/ fun/ gnl/ is/ loc/ lst/ mem/ num/ put/ str/ txt/
-MKDIR_BUILD := $(addprefix $(DIR_BUILD), $(SUBDIR))
+MKDIR_BUILD := $(addprefix $(DIR_BUILD), arr/ chr/ dot/ fun/ gnl/ is/ loc/ lst/ mem/ num/ put/ str/ txt/ way/ bonus/)
 
-SRCS := ARR CHR FUN GNL IS LOC LST MEM NUM PUT STR TXT BONUS
+
+HEAD := libft.h get_next_line.h bonus.h tmp.h
 ARR := ft_range.c ft_free_array.c ft_free_matrix.c
 CHR := ft_tolower.c ft_toupper.c
 DOT := ft_change_dot3.c ft_lenline3.c ft_movdot3.c ft_newdot3.c
@@ -39,8 +38,10 @@ TXT := ft_open_read.c ft_strsplit.c ft_strstr.c ft_strtrim.c
 WAY := ft_mulway.c ft_newway.c ft_scpway.c ft_sumway.c ft_vecpway.c ft_wayfromdots.c ft_waylenght.c
 BONUS = ft_shrinking_gap.c ft_quadratic.c
 TMP = ft_main.c
+SRCS := ARR CHR DOT FUN GNL IS LOC LST MEM NUM PUT STR TXT WAY BONUS
+FILES = ./*/*.c ./*.c
 
-SOURCES := 	$(addprefix arr/, $(ARR)) \
+SOURCES := $(addprefix arr/, $(ARR)) \
 			$(addprefix chr/, $(CHR)) \
 			$(addprefix dot/, $(DOT)) \
 			$(addprefix fun/, $(FUN)) \
@@ -56,32 +57,35 @@ SOURCES := 	$(addprefix arr/, $(ARR)) \
 			$(addprefix way/, $(WAY)) \
 			$(addprefix bonus/, $(BONUS)) \
 			$(TMP)
-CFILES := $(addprefix $(DIR_SRC), $(SOURCES))
+OBJECTS := $(SOURCES:%.c=%.o)
 
-OBJECTS = $(SOURCES:%.c=%.o)
+CFILES := $(addprefix $(DIR_SRC), $(SOURCES))
 OFILES = $(addprefix $(DIR_BUILD), $(OBJECTS))
 
-FILES = ./*/*.c
+#OFILES = $(patsubst %.c, %.o, $(CFILES))
 
 .PHONY: all $(NAME) clean fclean re
 
-.SILENT: $(OFILES)
+#.SILENT: $(OFILES)
 
 all : $(NAME)
 
-$(NAME): $(MKDIR_BUILD) $(OFILES)
+$(NAME) : $(MKDIR_BUILD) $(OFILES)
 	@ar rc $(NAME) $(OFILES)
 	ranlib $(NAME)
+
+%.o: %.c $(HEAD)
+	@$(CC) -I $(INCLUDES) -c $< -o $@
+
+$(DIR_BUILD)%.o: %.c $(HEAD)
+	@$(CC) -I $(INCLUDES) -c $< -o $$(DIR_BUILD)@
 
 $(MKDIR_BUILD):
 	mkdir -p $(DIR_BUILD)
 	mkdir -p $(MKDIR_BUILD)
 
-$(DIR_BUILD)%.o : $(DIR_SRC)%.c $(HEAD)
-	@$(CC) -c $< -o $@ $(INCLUDES)
-
 clean :
-	@$(RM) $(DIR_BUILD)
+	@rm -rf $(DIR_BUILD)
 
 fclean : clean
 	$(RM) $(NAME)

@@ -9,6 +9,7 @@
 #include <math.h>
 #include "libft/includes/libft.h"
 #define MIN(a,b) ((a) < (b) ? (a) : (b))
+#define MAX(a,b) ((a) > (b) ? (a) : (b))
 #define WIN_H (30)
 #define WIN_W (40)
 #define WIN_SIZE (WIN_H * WIN_W)

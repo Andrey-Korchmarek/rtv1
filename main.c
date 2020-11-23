@@ -29,6 +29,7 @@ double	scalar_product(t_vector a, t_vector b)
 //	return (scalar_product(v, v));
 //}
 
+/*
 void	change_pixel(t_rtv *data, int *pix, t_vector d, t_vector oc)
 {
 	double a;
@@ -55,20 +56,40 @@ void	change_pixel(t_rtv *data, int *pix, t_vector d, t_vector oc)
 		*pix = (int)(MIN((-b + sqrt(discr)) / (2 * a), (-b - sqrt(discr)) /
 		(2 * a)));
 }
+*/
+
 
 double	ft_scpway_square(t_way v)
 {
 	return (ft_scpway(v, v));
 }
 
-void	change_color(t_equation2 *roots, int *color)
+void	change_color(double distance, t_equation *roots, int *color)
 {
-
+	if (roots->number == 0)
+		return ;
+	else if (roots->number == 1)
+	{
+		if (roots->roots[0] < 1)
+			return ;
+		*color = (int)floor(distance * (roots->roots[0] - 1));
+	}
+	else
+	{
+		if (roots->roots[0] < 1 && roots->roots[1] < 1)
+			return ;
+		else if (roots->roots[0] < 1 || roots->roots[1] < 1)
+			*color = (int)floor(distance * (MAX(roots->roots[0],
+					roots->roots[1]) - 1));
+		else
+			*color = (int)floor(distance * (MIN(roots->roots[0],
+					roots->roots[1]) - 1));
+	}
 }
 
 void	change_pixel2(t_rtv *data, t_dot3 pix, int *color)
 {
-	t_equation2	*roots;
+	t_equation	*roots;
 	double		a;
 	double		b;
 	double		c;
@@ -79,13 +100,7 @@ void	change_pixel2(t_rtv *data, t_dot3 pix, int *color)
 	c = ft_scpway_square(ft_wayfromdots(data->ball.center,data->o)) -
 			pow(data->ball.radius, 2);
 	roots = ft_quadratic(a, b, c);
-	if (roots->number == 0)
-		return ;
-	else if ((roots->number == 1)
-		change_color(color);
-		*color = (int)floor(roots->roots[0]);
-	else
-		*color =
+	change_color(ft_lenline3(data->o, pix), roots, color);
 }
 
 int	**get_window(t_rtv *data)
@@ -106,7 +121,7 @@ int	**get_window(t_rtv *data)
 //			tmp1 = (t_vector){wtp(i, j, 0), wtp(i, j, 1)};
 //			tmp2 = (t_vector){data->ball.center, wtp(i, j, 0)};
 //			change_pixel(data, &scene[i][j], tmp1, tmp2);
-			change_pixel2(data, ft_newdot3(1, 1, 1) &scene[i][j]);
+			change_pixel2(data, ft_newdot3(1, 1, 1), &scene[i][j]);
 			j++;
 		}
 		i++;
@@ -135,7 +150,7 @@ void	set_default(t_rtv *data)
 {
 	data->o = ft_newdot3(0, 0, 0);
 	data->d = (t_coord){0, 0 , 0};
-	data->ball.center = (t_coord){0, 0 , 10};
+	data->ball.center = ft_newdot3(0, 0 , 10);
 	data->ball.radius = 3;
 	return ;
 }
