@@ -109,6 +109,7 @@ void	set_default(t_rtv *data)
 	return ;
 }
 
+
 int	main(void)
 {
 	t_rtv	*data;
@@ -116,7 +117,11 @@ int	main(void)
 
 	data = (t_rtv*)malloc(sizeof(t_rtv));
 	set_default(data);
+	data->mlx_ptr = mlx_init();
+	data->win_ptr = mlx_new_window(data->mlx_ptr, 1000, 1000, "RTv1");
+	// read_obj(&event, &scene, argv[1]);
 	scene = get_window(data);
 	ft_test_print(scene);
+	mlx_loop(data->mlx_ptr);
 	return (0);
 }

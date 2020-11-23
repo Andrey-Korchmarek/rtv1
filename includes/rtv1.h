@@ -20,7 +20,7 @@ typedef struct		s_coord
 }			t_coord;
 
 typedef	struct	s_vector
-{
+{ 
 	t_coord	beg;
 	t_coord	end;
 }				t_vector;
@@ -33,9 +33,22 @@ typedef	struct	s_sphere
 
 typedef	struct	s_rtv
 {
+	void	*mlx_ptr;
+	void	*win_ptr;
+	
 	t_coord		o;
 	t_coord		d;
 	t_sphere	ball;
 }				t_rtv;
+
+typedef	struct	s_list
+{
+
+}				t_list;
+
+typedef	struct	s_event
+{
+	
+}				t_event;
 
 #endif
