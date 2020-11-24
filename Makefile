@@ -1,7 +1,7 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile_0                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: mashley <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
@@ -18,23 +18,26 @@ FWS = -lmlx -framework OpenGL -framework AppKit
 
 MY_LIB = ./libft/
 MLX_LIB = ./minilibx_macos/
-INC = ./minilibx_macos/ ./libft/includes/ ./includes
+INC = ./minilibx_macos/ ./libft/includes/ ./includes/rtv1.h
 INCLUDES = -I ./minilibx_macos/ -I ./libft/includes/ -I ./includes/
 
-SRC = $(addprefix $(SRC_DIR), $(SRC_NAME))
-OBJ = $(addprefix $(OBJ_DIR)/, $(OBJ_NAME))
+SRC = main.c $(addprefix $(SRC_DIR), $(SRC_NAME))
+OBJ = main.o $(addprefix $(OBJ_DIR)/, $(OBJ_NAME))
 
 SRC_DIR = ./sources
 OBJ_DIR = ./object
 
-SRC_NAME = main.c sources/*.c
-OBJ_NAME = $(SRC_NAME:.c=.o)
+SRC_NAME = draw.c
+OBJ_NAME = $(SRC_NAME:%.c=%.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@make build_lib
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -L $(MLX_LIB) -lmlx -L $(MY_LIB) -lft $(INCLUDES) $(FWS)
+
+main.o: main.c $(INC)
+	@$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC)
 	@mkdir -p $(OBJ_DIR)

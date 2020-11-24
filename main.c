@@ -1,4 +1,4 @@
-#include "includes/rtv1.h"
+#include "rtv1.h"
 
 t_coord	wtp(int i, int j, int d)
 {

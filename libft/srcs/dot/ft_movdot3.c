@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/bonus.h"
+#include "bonus.h"
 
 t_dot3	ft_movdot3(t_dot3 point, t_way vector)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/bonus.h"
+#include "bonus.h"
 
 t_way	ft_vecpway(t_way a, t_way b)
 {

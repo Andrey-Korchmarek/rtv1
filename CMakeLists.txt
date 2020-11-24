@@ -11,9 +11,10 @@ find_library(APPKIT AppKit)
 include_directories(.)
 include_directories(libft)
 include_directories(minilibx_macos)
+FILE(GLOB HEADERS ./includes/*.h)
 FILE(GLOB SOURCES *.c srcs/*.c)
 
-add_executable(${CMAKE_PROJECT_NAME} ${SOURCES} includes/*.h )
+add_executable(${CMAKE_PROJECT_NAME} ${SOURCES} ${HEADERS})
 
 add_subdirectory(libft)
 target_link_libraries(${CMAKE_PROJECT_NAME} lib)

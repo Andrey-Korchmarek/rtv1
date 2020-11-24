@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/bonus.h"
+#include "bonus.h"
 
 void	ft_change_dot(t_dot3 *point, double x, double y, double z)
 {

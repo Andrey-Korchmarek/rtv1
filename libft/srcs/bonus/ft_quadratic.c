@@ -10,15 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/bonus.h"
+#include "bonus.h"
 
-t_equation2	*ft_quadratic(double a, double b, double c)
+t_equation	*ft_quadratic(double a, double b, double c)
 {
-	t_equation2	*result;
+	t_equation	*result;
 	double		discr;
 	double		root;
 	double		roots[2];
 
+	result = NULL;
 	discr = b * b - 4 * a * c;
 	if (discr < 0)
 	{

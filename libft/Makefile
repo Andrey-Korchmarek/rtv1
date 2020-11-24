@@ -15,7 +15,8 @@ CC = gcc -Wall -Wextra -Werror
 RM = /bin/rm -rf
 
 HEAD := libft.h get_next_line.h bonus.h tmp.h
-INCLUDES := -L $(addprefix ./includes/, $(HEAD))
+HEADERS := $(addprefix ./includes/, $(HEAD))
+INCLUDES := -I ./includes
 
 DIR_SRC := ./srcs/
 DIR_BUILD := ./build/
@@ -63,9 +64,9 @@ OFILES = $(addprefix $(DIR_BUILD), $(OBJECTS))
 
 FILES = ./*/*.c
 
-.PHONY: all $(NAME) clean fclean re
+.PHONY: all $(NAME) $(MKDIR_BUILD) clean fclean re
 
-.SILENT: $(OFILES)
+#.SILENT: $(OFILES)
 
 all : $(NAME)
 
@@ -74,16 +75,16 @@ $(NAME): $(MKDIR_BUILD) $(OFILES)
 	ranlib $(NAME)
 
 $(MKDIR_BUILD):
-	mkdir -p $(DIR_BUILD)
-	mkdir -p $(MKDIR_BUILD)
+	@mkdir -p $(DIR_BUILD)
+	@mkdir -p $(MKDIR_BUILD)
 
-$(DIR_BUILD)%.o : $(DIR_SRC)%.c $(HEAD)
+$(DIR_BUILD)%.o : $(DIR_SRC)%.c $(HEADERS)
 	@$(CC) -c $< -o $@ $(INCLUDES)
 
 clean :
 	@$(RM) $(DIR_BUILD)
 
 fclean : clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re : fclean all

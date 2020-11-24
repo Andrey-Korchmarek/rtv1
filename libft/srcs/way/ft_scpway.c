@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/bonus.h"
+#include "bonus.h"
 
 double	ft_scpway(t_way v1, t_way v2)
 {

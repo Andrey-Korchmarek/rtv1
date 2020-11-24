@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/bonus.h"
+#include "bonus.h"
 
 double	ft_lenline3(t_dot3 a, t_dot3 b)
 {

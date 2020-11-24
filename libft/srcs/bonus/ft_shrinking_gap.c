@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/bonus.h"
+#include "bonus.h"
 
 size_t	ft_shrinking_gap(size_t gap)
 {

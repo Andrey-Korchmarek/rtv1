@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/bonus.h"
+#include "bonus.h"
 
 t_way	ft_wayfromdots(t_dot3 beg, t_dot3 end)
 {
