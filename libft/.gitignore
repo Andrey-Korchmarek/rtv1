@@ -57,4 +57,4 @@ dkms.conf
 cmake-build-debug/
 test.txt
 cfiles.txt
-*CMakeLists.txt
+#*CMakeLists.txt
