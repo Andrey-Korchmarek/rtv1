@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "libft.h"
+#include "../libft/includes/libft.h"
 #define MIN(a,b) ((a) < (b) ? (a) : (b))
 #define MAX(a,b) ((a) > (b) ? (a) : (b))
 #define WIN_H (30)
