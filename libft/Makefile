@@ -20,10 +20,10 @@ INCLUDES := -I ./includes
 
 DIR_SRC := ./srcs/
 DIR_BUILD := ./build/
-SUBDIR := arr/ bonus/ chr/ fun/ gnl/ is/ loc/ lst/ mem/ num/ put/ str/ txt/
+SUBDIR := arr/ chr/ dot/ fun/ gnl/ is/ loc/ lst/ mem/ num/ put/ str/ txt/ way/ bonus/
 MKDIR_BUILD := $(addprefix $(DIR_BUILD), $(SUBDIR))
 
-SRCS := ARR CHR FUN GNL IS LOC LST MEM NUM PUT STR TXT BONUS
+SRCS := ARR CHR DOT FUN GNL IS LOC LST MEM NUM PUT STR TXT WAY BONUS
 ARR := ft_range.c ft_free_array.c ft_free_matrix.c
 CHR := ft_tolower.c ft_toupper.c
 DOT := ft_change_dot3.c ft_lenline3.c ft_movdot3.c ft_newdot3.c
