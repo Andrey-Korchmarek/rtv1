@@ -4,9 +4,11 @@
 
 #ifndef RTV1_H
 #define RTV1_H
+#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+
 #include "../libft/includes/libft.h"
 #define MIN(a,b) ((a) < (b) ? (a) : (b))
 #define MAX(a,b) ((a) > (b) ? (a) : (b))
@@ -32,6 +34,15 @@ typedef	struct	s_sphere
 	t_dot3	center;
 	double	radius;
 }				t_sphere;
+
+typedef struct	s_obj
+{
+	char	*name;
+	unsigned int	color;
+	t_dot3	center;
+	double	radius;
+
+}				t_obj;
 
 typedef	struct	s_rtv
 {
