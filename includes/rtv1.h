@@ -29,6 +29,14 @@ typedef	struct	s_vector
 	t_coord	end;
 }				t_vector;
 
+typedef struct	s_ray
+{
+	t_dot3			pov;
+	t_way			dir;
+	double			distance;
+	t_way			normal;
+}				t_ray;
+
 typedef	struct	s_sphere
 {
 	t_dot3	center;

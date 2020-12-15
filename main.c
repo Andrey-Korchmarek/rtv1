@@ -59,10 +59,7 @@ void	change_pixel(t_rtv *data, int *pix, t_vector d, t_vector oc)
 */
 
 
-double	ft_scpway_square(t_way v)
-{
-	return (ft_scpway(v, v));
-}
+
 
 void	change_color(double distance, t_equation *roots, int *color)
 {
